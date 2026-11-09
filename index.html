@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Математика с Оксаной | Краснодар</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #f7f6f3;
+            --text-main: #222222;
+            --text-muted: #666666;
+            --accent-color: #c96f4a; /* Терракотовый цвет из Figma */
+            --accent-hover: #b05b37;
+            --dark-bg: #2b2b2b;
+            --white: #ffffff;
+            --border-color: #e0ddd6;
+        }
+        
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, .serif {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- ШАПКА --- */
+        header {
+            padding: 20px 0;
+            background-color: var(--bg-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: var(--text-main);
+        }
+        .logo-icon {
+            background-color: var(--accent-color);
+            color: white;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            font-family: 'Playfair Display', serif;
+        }
+        .logo-text { font-size: 14px; line-height: 1.2; font-weight: 500; }
+        .logo-text span { font-size: 12px; color: var(--text-muted); font-weight: 400; }
+        
+        nav { display: flex; gap: 30px; }
+        nav a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 15px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        nav a:hover { color: var(--accent-color); }
+        
+        .header-phone {
+            font-weight: 600;
+            text-decoration: none;
+            color: var(--text-main);
+        }
+
+        /* --- ГЛАВНЫЙ ЭКРАН (HERO) --- */
+        .hero { padding: 80px 0; }
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .hero-subtitle {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        .hero h1 { font-size: 64px; margin-bottom: 25px; }
+        .hero h1 em { color: var(--accent-color); font-style: italic; }
+        .hero-desc {
+            font-size: 18px;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            max-width: 500px;
+        }
+        
+        .buttons { display: flex; gap: 15px; margin-bottom: 50px; }
+        .btn {
+            padding: 16px 32px;
+            font-size: 16px;
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+            text-align: center;
+            cursor: pointer;
+            border: none;
+        }
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: white;
+        }
+        .btn-primary:hover { background-color: var(--accent-hover); }
+        .btn-outline {
+            background-color: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+        }
+        .btn-outline:hover { border-color: var(--text-main); }
+
+        .stats {
+            display: flex;
+            gap: 40px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 30px;
+        }
+        .stat-item h3 { font-size: 36px; margin-bottom: 5px; }
+        .stat-item p { font-size: 13px; color: var(--text-muted); }
+
+        .hero-image {
+            position: relative;
+            height: 600px;
+            background-color: #e0ddd6;
+            background-image: url('photo1.jpg'); /* ТУТ ФОТО 1 */
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* --- О КАБИНЕТЕ (DARK SECTION) --- */
+        .about {
+            background-color: var(--dark-bg);
+            color: var(--white);
+            padding: 100px 0;
+        }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+        .about-images {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        .about-img {
+            height: 300px;
+            background-color: #444;
+            background-size: cover;
+            background-position: center;
+        }
+        .about-img-1 { background-image: url('photo2.jpg'); } /* ТУТ ФОТО 2 (дети у доски) */
+        .about-img-2 { background-image: url('room.jpg'); } /* ТУТ ФОТО 3 (кабинет) */
+        
+        .about h2 { font-size: 48px; margin-bottom: 30px; }
+        .about p {
+            color: #cccccc;
+            font-size: 16px;
+            margin-bottom: 40px;
+        }
+        .about-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 15px;
+        }
+        .feature svg { color: var(--accent-color); flex-shrink: 0; }
+        
+        .quote-box {
+            border-left: 2px solid var(--accent-color);
+            padding-left: 20px;
+            font-style: italic;
+            font-size: 18px;
+            color: #eee;
+        }
+        .quote-box span {
+            display: block;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #999;
+            font-style: normal;
+        }
+
+        /* --- НАПРАВЛЕНИЯ И ЦЕНЫ --- */
+        .directions { padding: 100px 0; }
+        .section-title { font-size: 48px; margin-bottom: 15px; }
+        .section-desc { color: var(--text-muted); font-size: 18px; margin-bottom: 60px; max-width: 600px; }
+        
+        .direction-row {
+            display: grid;
+            grid-template-columns: 80px 1fr 1.5fr 120px 150px;
+            align-items: center;
+            padding: 30px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .direction-row:first-of-type { border-top: 1px solid var(--border-color); }
+        .dir-num { font-size: 24px; color: var(--accent-color); font-family: 'Playfair Display', serif; }
+        .dir-title { font-size: 24px; font-family: 'Playfair Display', serif; }
+        .dir-desc { color: var(--text-muted); font-size: 15px; padding-right: 20px; }
+        .dir-tag {
+            font-size: 12px;
+            border: 1px solid var(--border-color);
+            padding: 5px 10px;
+            text-align: center;
+            border-radius: 4px;
+            color: var(--text-muted);
+        }
+        .dir-price {
+            font-weight: 600;
+            font-size: 18px;
+            text-align: right;
+        }
+        .dir-price span { font-size: 12px; color: var(--text-muted); font-weight: 400; display: block; }
+
+        /* --- ОТЗЫВЫ --- */
+        .reviews { padding: 100px 0; background-color: #f0eee9; }
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+        .review-card {
+            background: var(--white);
+            padding: 40px 30px;
+            position: relative;
+        }
+        .review-quote-icon {
+            font-family: 'Playfair Display', serif;
+            font-size: 60px;
+            color: var(--accent-color);
+            line-height: 1;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            opacity: 0.2;
+        }
+        .review-text {
+            font-size: 16px;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+        }
+        .review-author { font-weight: 600; font-size: 15px; margin-bottom: 5px; }
+        .review-result { font-size: 13px; color: var(--accent-color); }
+
+        /* --- КОНТАКТЫ (ФУТЕР) --- */
+        .contacts {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+        }
+        .contacts-left {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 100px;
+        }
+        .contacts-left h2 { font-size: 48px; margin-bottom: 20px; }
+        .contacts-left p { font-size: 18px; margin-bottom: 40px; opacity: 0.9; }
+        .contacts-left .btn { background-color: var(--dark-bg); color: white; }
+        .contacts-left .btn:hover { background-color: #000; }
+        .contacts-left .btn-outline { background-color: transparent; border-color: white; color: white;}
+        
+        .contacts-right {
+            background-color: var(--dark-bg);
+            color: white;
+            padding: 100px;
+        }
+        .contact-block { margin-bottom: 40px; }
+        .contact-block h4 { font-size: 12px; text-transform: uppercase; letter-spacing: 2px; color: #888; margin-bottom: 10px; }
+        .contact-block p { font-size: 20px; font-family: 'Playfair Display', serif; }
+
+        @media (max-width: 992px) {
+            .hero-grid, .about-grid, .contacts { grid-template-columns: 1fr; }
+            .hero h1, .about h2, .section-title, .contacts-left h2 { font-size: 36px; }
+            .hero-image { height: 400px; }
+            .direction-row { grid-template-columns: 50px 1fr; gap: 15px; }
+            .dir-desc, .dir-tag, .dir-price { grid-column: 2; text-align: left; margin-top: 10px; padding: 0;}
+            .reviews-grid { grid-template-columns: 1fr; }
+            .contacts-left, .contacts-right { padding: 50px 20px; }
+            .header-inner { flex-direction: column; gap: 20px; }
+            nav { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-inner">
+            <a href="#" class="logo">
+                <div class="logo-icon">π</div>
+                <div class="logo-text">Математика с Оксаной<br><span>репетиторский кабинет</span></div>
+            </a>
+            <nav>
+                <a href="#about">О кабинете</a>
+                <a href="#directions">Направления</a>
+                <a href="#reviews">Отзывы</a>
+                <a href="#contacts">Контакты</a>
+            </nav>
+            <a href="tel:+79615265233" class="header-phone">+7 (961) 526-52-33</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- ГЛАВНЫЙ ЭКРАН -->
+        <section class="hero container">
+            <div class="hero-grid">
+                <div>
+                    <div class="hero-subtitle">ОЧНЫЕ ЗАНЯТИЯ В КРАСНОДАРЕ</div>
+                    <h1>Математика становится <em>понятной</em></h1>
+                    <p class="hero-desc">Индивидуальные занятия для учеников 5–11 классов в спокойном и светлом кабинете. Без зубрёжки — через логику, практику и поддержку.</p>
+                    <div class="buttons">
+                        <a href="https://wa.me/79615265233" class="btn btn-primary" target="_blank">Записаться на знакомство</a>
+                        <a href="#directions" class="btn btn-outline">Посмотреть направления</a>
+                    </div>
+                    <div class="stats">
+                        <div class="stat-item">
+                            <h3>6+</h3>
+                            <p>лет опыта</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3>110</h3>
+                            <p>учеников</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3>5</h3>
+                            <p>средний балл ОГЭ и ЕГЭ (база)</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-image"></div>
+            </div>
+        </section>
+
+        <!-- О КАБИНЕТЕ -->
+        <section class="about" id="about">
+            <div class="container about-grid">
+                <div class="about-images">
+                    <div class="about-img about-img-1"></div>
+                    <div class="about-img about-img-2"></div>
+                </div>
+                <div>
+                    <div class="hero-subtitle">О КАБИНЕТЕ</div>
+                    <h2>Здесь можно ошибаться, спрашивать и понимать</h2>
+                    <p>Кабинет создан для занятий, где ребёнку комфортно думать вслух. Мы не гонимся за количеством решённых примеров — сначала находим логику и только потом закрепляем её практикой.</p>
+                    
+                    <div class="about-features">
+                        <div class="feature">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+                            Индивидуальный план
+                        </div>
+                        <div class="feature">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+                            Обратная связь родителям
+                        </div>
+                        <div class="feature">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+                            Все материалы включены
+                        </div>
+                        <div class="feature">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+                            Занятия 60-90 минут
+                        </div>
+                    </div>
+
+                    <div class="quote-box">
+                        «Моя задача — научить ребёнка рассуждать, а не запоминать.»
+                        <span>Оксана Алексеевна, преподаватель</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- НАПРАВЛЕНИЯ И ЦЕНЫ -->
+        <section class="directions container" id="directions">
+            <div class="hero-subtitle">НАПРАВЛЕНИЯ</div>
+            <h2 class="section-title">От уверенной базы до высокого балла</h2>
+            <p class="section-desc">После диагностики определим стартовую точку и соберем понятный маршрут к вашей цели.</p>
+
+            <div class="direction-list">
+                <div class="direction-row">
+                    <div class="dir-num">01</div>
+                    <div class="dir-title">Школьная программа</div>
+                    <div class="dir-desc">Разбираем сложные темы, закрываем пробелы и возвращаем уверенность на уроках.</div>
+                    <div class="dir-tag">5-9 КЛАСС</div>
+                    <div class="dir-price">от 1500 ₽ <span>индивидуально</span></div>
+                </div>
+                
+                <div class="direction-row">
+                    <div class="dir-num">02</div>
+                    <div class="dir-title">Подготовка к ОГЭ</div>
+                    <div class="dir-desc">Системный план, понятные алгоритмы и регулярные пробники без лишнего стресса.</div>
+                    <div class="dir-tag">9 КЛАСС</div>
+                    <div class="dir-price">от 650 ₽ <span>в группе</span></div>
+                </div>
+
+                <div class="direction-row">
+                    <div class="dir-num">03</div>
+                    <div class="dir-title">Подготовка к ЕГЭ (База)</div>
+                    <div class="dir-desc">Отработка всех типов заданий базового уровня для получения оценки «5».</div>
+                    <div class="dir-tag">10-11 КЛАСС</div>
+                    <div class="dir-price">от 1500 ₽ <span>индивидуально</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ОТЗЫВЫ -->
+        <section class="reviews" id="reviews">
+            <div class="container">
+                <div class="hero-subtitle">ОТЗЫВЫ</div>
+                <h2 class="section-title">Результаты говорят сами</h2>
+                
+                <div class="reviews-grid">
+                    <div class="review-card">
+                        <div class="review-quote-icon">“</div>
+                        <div class="review-text">За полгода сын поднялся с твёрдой тройки до пятёрки. Главное — он перестал бояться математики и теперь сам садится за домашнее задание.</div>
+                        <div class="review-author">Елена, мама Артёма</div>
+                        <div class="review-result">Оценка: 3 → 5</div>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-quote-icon">“</div>
+                        <div class="review-text">Пришла с результатом пробника так себе, а ОГЭ сдала на 5. На занятиях всегда было спокойно, понятно и очень структурно. Спасибо!</div>
+                        <div class="review-author">Мария, выпускница</div>
+                        <div class="review-result">ОГЭ: 5</div>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-quote-icon">“</div>
+                        <div class="review-text">Нам понравился индивидуальный подход. После каждого месяца получаем обратную связь и точно понимаем, над чем сейчас работает ребёнок.</div>
+                        <div class="review-author">Алексей, папа Полины</div>
+                        <div class="review-result">Алгебра: 4 → 5</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- КОНТАКТЫ -->
+        <section class="contacts" id="contacts">
+            <div class="contacts-left">
+                <div class="hero-subtitle" style="color: rgba(255,255,255,0.7)">ПЕРВЫЙ ШАГ</div>
+                <h2>Познакомимся и определим вашу цель</h2>
+                <p>Напишите или позвоните — обсудим задачу, подберём удобное время и договоримся о первом занятии.</p>
+                <div class="buttons">
+                    <a href="tel:+79615265233" class="btn">Позвонить</a>
+                    <a href="https://wa.me/79615265233" class="btn btn-outline" target="_blank">Написать в WhatsApp</a>
+                </div>
+            </div>
+            <div class="contacts-right">
+                <div class="hero-subtitle" style="color: rgba(255,255,255,0.5)">КОНТАКТЫ</div>
+                <div class="contact-block">
+                    <h4>Адрес</h4>
+                    <p>Краснодар, ул. Цезаря Куникова, 24 к.1</p>
+                </div>
+                <div class="contact-block">
+                    <h4>Телефон</h4>
+                    <p>+7 (961) 526-52-33</p>
+                </div>
+                <div class="contact-block">
+                    <h4>Электронная почта</h4>
+                    <p>dowle2@yandex.ru</p>
+                </div>
+                <div class="contact-block">
+                    <h4>Часы работы</h4>
+                    <p>Пн–Вс, 9:00–21:00</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>
